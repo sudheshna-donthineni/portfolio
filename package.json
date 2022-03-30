@@ -5,6 +5,11 @@
   "version": "0.1.0",
   "author": "Sudheshna Donthineni",
   "dependencies": {
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/lab": "^5.0.0-alpha.75",
+    "@mui/material": "^5.5.2",
+    "@mui/styled-engine-sc": "^5.5.2",
     "gatsby": "^4.10.1",
     "gatsby-plugin-gatsby-cloud": "^4.10.0",
     "gatsby-plugin-image": "^2.10.0",
@@ -21,7 +26,8 @@
     "react-helmet": "^6.1.0",
     "react-lottie": "^1.2.3",
     "react-transition-group": "^4.4.2",
-    "styled-components": "^4.2.0"
+    "scrollreveal": "^4.0.9",
+    "styled-components": "^4.4.1"
   },
   "devDependencies": {
     "eslint-config-prettier": "^8.5.0",

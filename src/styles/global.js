@@ -7,9 +7,6 @@ const GlobalStyle = createGlobalStyle`
 html {
     background-color: ${theme.colors.grey};
   }
-
-
-
 `
 
 export default GlobalStyle

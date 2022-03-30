@@ -1,79 +1,39 @@
 import React, { Component } from "react"
 import PropTypes from "prop-types"
-//  import Img from 'gatsby-image';
-// import ScrollReveal from 'scrollreveal';
-// import { srConfig } from '../config';
+import ScrollReveal from "scrollreveal"
+import { srConfig } from "../config"
 import styled from "styled-components"
-// import { theme, mixins, media, Section, Heading } from '../styles';
-// const { colors, fontSizes, fonts } = theme;
+import theme from "../styles/theme"
+import Image from "../content/me.png"
+import Lottie from "react-lottie"
+import animationData from "../styles/avatar.json"
 
 const AboutContainer = styled.section`
-  position: relative;
-  margin-top: 100vh;
-  border: 1px solid black;
+  margin-top: 120vh;
   height: 100vh;
 `
-// const FlexContainer = styled.div`
 
-//   ${mixins.flexBetween};
-//   align-items: flex-end;
-
-//   ${media.tablet`display: block;`};
-// `;
-// const ContentContainer = styled.div`
-
-//   margin-left:400px;
-//   max-width: 880px;
-//   font-size: ${fontSizes.large};
-//   ${media.tablet`width: 100%;`};
-//   a {
-//     ${mixins.inlineLink};
-//   }
-// `;
-// const SkillsContainer = styled.ul`
-//   display: grid;
-//   grid-template-columns: repeat(2, minmax(140px, 200px));
-//   overflow: hidden;
-
-//   margin-top: 20px;
-// `;
-// const Skill = styled.li`
-//   position: relative;
-//   margin-bottom: 10px;
-//   padding-left: 20px;
-//   font-family: ${fonts.SFMono};
-//   font-size: ${fontSizes.smallish};
-//   color: ${colors.slate};
-//   &:before {
-//     content: '-';
-//     position: absolute;
-//     left: 0;
-//     color: ${colors.red};
-//     font-size: ${fontSizes.small};
-//     line-height: 12px;
-//   }
-// `;
-const PicContainer = styled.div`
-  position: relative;
-  width: 40%;
-  max-width: 300px;
-
-  margin-left: -300px;
+const FlexContainer = styled.div`
+  display: flex;
+  flex-direction: row;
 `
+const ContentContainer = styled.div`
+  margin-top: 10%;
+  left: 15%;
+  max-width: 40vw;
+  font-family: ${theme.fonts.Serif};
+  font-size: 2vw;
+  text-align: center;
+  position: relative;
+  z-index: 3;
+`
+
+const AvatarContainer = styled.div``
 const Avatar = styled.img`
-  position: relative;
-  margin-top: -30px;
-  width: auto;
-`
-const AvatarContainer = styled.div`
-  position: relative;
-  margin-top: -350px;
-  margin-left: -700px;
-  border-radius: 50%;
-  width: 350px;
-  height: 350px;
-  border: 5px red;
-  overflow: hidden;
+position:relative
+z-index:3
+left:30%;
+
 `
 
 class About extends Component {
@@ -81,31 +41,35 @@ class About extends Component {
     data: PropTypes.array.isRequired,
   }
 
-  // componentDidMount() {
-  //   ScrollReveal().reveal(this.about, srConfig());
-  // }
+  defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+  }
+  componentDidMount() {
+    ScrollReveal().reveal(this.about, srConfig())
+  }
 
   render() {
     const { data } = this.props
-    const { frontmatter, html } = data[0].node
-    const { title, skills, avatar } = frontmatter
+    const { html } = data[0].node
 
     return (
       <AboutContainer id="about" ref={el => (this.about = el)}>
-        {/* <Heading>{title}</Heading>
         <FlexContainer>
+          <AvatarContainer>
+            <Lottie
+              style={{ position: "absolute", zIndex: "1", left: "3%" }}
+              options={this.defaultOptions}
+              height={800}
+              width={800}
+            />
+            <Avatar src={Image} alt="Avatar" height={500} width={500} />
+          </AvatarContainer>
           <ContentContainer>
             <div dangerouslySetInnerHTML={{ __html: html }} />
-            <SkillsContainer>
-              {skills && skills.map((skill, i) => <Skill key={i}>{skill}</Skill>)}
-            </SkillsContainer>
-          </ContentContainer> */}
-        <p>hello</p>
-        <PicContainer>
-          <AvatarContainer>
-            <Avatar fluid={avatar.childImageSharp.fluid} alt="Avatar" />
-          </AvatarContainer>
-        </PicContainer>
+          </ContentContainer>
+        </FlexContainer>
       </AboutContainer>
     )
   }

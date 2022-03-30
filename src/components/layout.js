@@ -3,6 +3,12 @@ import PropTypes from "prop-types"
 import Icons from "../components/socialbar"
 import Loader from "./loader"
 import GlobalStyle from "../styles/global"
+import Resume from "./Resume"
+import styled from "styled-components"
+const MainContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`
 class Layout extends Component {
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -24,10 +30,11 @@ class Layout extends Component {
         {isLoading ? (
           <Loader finishLoading={this.finishLoading} />
         ) : (
-          <div>
+          <MainContainer>
             <Icons />
             {children}
-          </div>
+            <Resume />
+          </MainContainer>
         )}
       </div>
     )

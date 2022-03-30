@@ -2,6 +2,7 @@ import React, { Component } from "react"
 // import PropTypes from 'prop-types';
 import styled, { keyframes } from "styled-components"
 import { socialMedia } from "../config"
+
 import {
   GithubIcon,
   EmailIcon,
@@ -13,17 +14,19 @@ import {
 } from "./icons"
 
 const IconAnimation = keyframes`
-0% { opacity: 0; transform: translateY(-10px); }
+0% { opacity: 0; transform: translateY(-20px); }
 25% { opacity: 1; transform: translateY(0px); }
   75% { opacity: 1;  }
   100% { opacity: 1;  }
 `
 const IconsDiv = styled.div`
-  float: right;
-  margin-right: 5vw;
-  margin-top: 10px;
+  position: fixed;
+  top: 10vh;
+  display: flex;
+  flex-direction: column;
+  left: 4vw;
+  align-items: center;
   animation-name: ${IconAnimation};
-  animation-duration: 5s;
 `
 
 const Button = styled.button`
@@ -33,8 +36,8 @@ const Button = styled.button`
   width: 3.5vw;
   transition-timing-function: ease-in-out;
   transition-delay: 150ms;
-  margin-right: 3px;
-  margin-left: 3px;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
   &:hover {
     transform: scale(1.5);
   }
