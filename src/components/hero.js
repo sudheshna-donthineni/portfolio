@@ -30,6 +30,8 @@ const MainContainer = styled.div`
     text-align: right;`};
   animation-name: ${MainAnimation};
   animation-duration: 10s;
+  border: 5px solid black;
+  padding: 10px;
 `
 
 const FirstText = styled.div`
@@ -123,16 +125,16 @@ class Hero extends Component {
           <br />
           <DescriptiveText>
             <DescriptiveList style={{ transitionDelay: "300ms" }}>
-              <li>
+              <li key={"1"}>
                 <Mark>builder</Mark>
               </li>
-              <li>
+              <li key={"2"}>
                 <Mark>food critic</Mark>
               </li>
-              <li>
+              <li key={"3"}>
                 <Mark>dog worshipper</Mark>
               </li>
-              <li>
+              <li key={"4"}>
                 <Mark>dancer</Mark>
               </li>
             </DescriptiveList>

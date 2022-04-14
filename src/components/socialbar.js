@@ -49,7 +49,7 @@ class Hero extends Component {
     return (
       <IconsDiv>
         {socialMedia.map(({ name, url }) => (
-          <Button href={url} target="_blank" rel="nofollow noopener noreferrer">
+          <Button  href={url} target="_blank" rel="nofollow noopener noreferrer">
             {name === "Github" ? (
               <GithubIcon />
             ) : name === "Linkedin" ? (

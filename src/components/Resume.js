@@ -14,11 +14,11 @@ const Container = styled.div`
 
 const style = {
   background: `${theme.colors.pink}`,
-  opacity: "0.7",
+
   height: "7vh",
-  border: "3px solid black",
+  border: "1px solid black",
   color: `${theme.colors.brown}`,
-  fontStyle: `${theme.fonts.Serif}`,
+  fontFamily: `${theme.fonts.SFMono}`,
 }
 
 class Resume extends Component {

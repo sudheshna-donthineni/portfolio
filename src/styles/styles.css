@@ -1,0 +1,23 @@
+
+
+.MuiButton-root{
+    color: #15020A;
+    margin-right: auto;
+    margin-left:auto;
+}
+
+.MuiCard-root{
+    width: 30vw;
+    text-align: center;
+}
+
+.MuiMasonry-root{
+    margin-left:7px;
+
+}
+.MuiPaper-root{
+    background-color: #EBE8E7  ;
+    border-radius: 10px;
+    border:2px solid #BFA5E2;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

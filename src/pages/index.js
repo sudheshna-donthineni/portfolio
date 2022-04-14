@@ -9,13 +9,17 @@ import Contact from "../components/contact"
 import Skills from "../components/skills"
 import Work from "../components/work"
 import Projects from "../components/projects"
+import Story from "../components/story"
+
 const IndexPage = ({ data }) => (
   <Layout>
     <Hero />
     <About data={data.about.edges} />
-    <Work />
+    <Story data={data.story.edges} />
+    <Work data={data.work.edges}/>
+    <Projects data={data.projects.edges} />
     <Skills data={data.skills.edges} />
-    <Projects />
+
     <Contact data={data.contact.edges} />
   </Layout>
 )
@@ -29,9 +33,22 @@ export default IndexPage
 
 export const query = graphql`
   query IndexQuery {
-    about: allMarkdownRemark(filter: { fileAbsolutePath: { regex: "/about/" } }) {
+    about: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/about/" } }
+    ) {
       edges {
         node {
+
+          htmlAst
+        }
+      }
+    }
+    story: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/story/" } }
+    ) {
+      edges {
+        node {
+
           html
         }
       }
@@ -43,6 +60,39 @@ export const query = graphql`
         node {
           frontmatter {
             title
+          }
+          html
+        }
+      }
+    }
+    work: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/work/" } }
+      sort: { fields: [frontmatter___id], order: ASC }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            company
+            job
+            url
+            date
+            skills
+          }
+          html
+        }
+      }
+    }
+    projects: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/projects/" } }
+      sort: { fields: [frontmatter___id], order: ASC }
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            skills
+            image
+            github
           }
           html
         }

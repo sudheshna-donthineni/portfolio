@@ -1,6 +1,5 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import theme from "../styles/theme"
 import Timeline from "@mui/lab/Timeline"
 import TimelineItem from "@mui/lab/TimelineItem"
 import TimelineSeparator from "@mui/lab/TimelineSeparator"
@@ -9,137 +8,172 @@ import TimelineContent from "@mui/lab/TimelineContent"
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent"
 import TimelineDot from "@mui/lab/TimelineDot"
 import scu from "../images/scu.png"
-import trifacta from "../images/trifacta.png"
+import trifacta from "../images/trifacta.jpeg"
+//import "../styles/s tyles.css"
+import dasera from "../images/dasera.jpeg"
+import af from "../images/af.png"
+import CardBox from "../components/card"
+import PropTypes from "prop-types"
+import { srConfig } from "../config"
+import theme from "../styles/theme"
+import ScrollReveal from "scrollreveal"
 
 const Container = styled.div`
-  width: 100%;
-  height: 100vh;
-  border: 1px solid black;
+  width: 80%;
   margin-left: auto;
   margin-right: auto;
-  text-align:center;
+  margin-top:50vh;
   }
 `
-const Title = styled.p`
-  color: ${theme.colors.brown}
-    font-size:4vw;
-  display: inline-block;
-  width:auto;
-  margin-bottom:10
-
+const DotIcon = styled.img`
+  border-radius: 50%;
 `
-const TimelineStyle = {
-  marginTop: "0"
-}
 
-const TimelineDotStyle = {
-  color: `${theme.colors.purple}`,
-  "&:hover":{
-    background: "#efefef"
+const DateContent = styled(TimelineOppositeContent)`
+  &.MuiTimelineOppositeContent-root {
+    letter-spacing: 2px;
+    font-size: 1.1rem;
+    font-family: "SF Mono";
+    margin-top: auto;
+    margin-bottom: auto;
   }
-}
-// const Line = styled.div`
-//   height: 100%;
-//   border-left: 3px solid ${theme.colors.brown};
-//   margin-left: 50%;
-// `
+`
 
-// const Icon = styled.div`
-//   position: relative;
-//   top: -98%;
-//   margin-left: auto;
-//   margin-right: auto;
-//   background: ${theme.colors.purple};
-//   width: 20px;
-//   height: 20px;
-//   border-radius: 50%;
-//   margin-bottom: 10%;
-//   border: 1px solid black;
-// `
+const Content = styled(TimelineContent)`
+  &.MuiTimelineContent-root {
+    display: flex;
+    align-items: center;
 
-// const Text = styled.p`
-//   font-size: 2vw;
-//   position: absolute;
-//   left: 5vw;
-//   top: -4vh;
+    justify-content: center;
+  }
+`
 
-//   width: 20vw;
-// `
+const Connector = styled(TimelineConnector)`
+  &.MuiTimelineConnector-root {
+    height: 13vh;
+    background-color: rgb(9, 12, 16);
+  }
+`
 class Work extends Component {
+  static propTypes = {
+    data: PropTypes.array.isRequired,
+  }
+  constructor(props) {
+    super(props)
+    this.revealRefs = []
+    this.restRefs = []
+  }
+  componentDidMount() {
+    ScrollReveal().reveal(this.work, srConfig())
+    this.revealRefs.forEach((ref, i) =>
+      ScrollReveal().reveal(ref, srConfig(i * 10))
+    )
+  }
   render() {
+    const {data} = this.props;
+    console.log(data)
     return (
       <>
         <Container>
-          <Title>work</Title>
-          {/* <Line />
-          <Icon>
-            <Text>Jan 2016 - Jun 2016</Text>
-          </Icon>
-          <Icon>
-            <Text>Jun 2016</Text>
-          </Icon>
-          <Icon>
-            <Text>Jun 2018</Text>
-          </Icon>
-          <Icon>
-            <Text>Aug 2018 - Nov 2019</Text>
-          </Icon>
-          <Icon>
-            <Text>Nov 2019 - May 2020</Text>
-          </Icon>
-          <Icon>
-            <Text>Jul 2021 - Present</Text>
-          </Icon> */}
-
-          <Timeline style={TimelineStyle} position="alternate">
-            <TimelineItem>
-              <TimelineOppositeContent
-                sx={{ m: "auto 0" }}
-                align="right"
-                variant="body2"
-                color="text.secondary"
-              >
-                Jan 2016 - Jun 2016
-              </TimelineOppositeContent>
+          <Timeline position="alternate">
+            {/* {data.map((child, index) => {
+              console.log(child.node);
+              <TimelineItem key={index}>
+              <DateContent>{child.node.frontmatter.date}</DateContent>
               <TimelineSeparator>
-                <TimelineConnector />
-                <TimelineDot variant="outlined" style={TimelineDotStyle}>
-                <img src={scu} width={60} height={60}/>
+                <Connector />
+                <TimelineDot variant="outlined">
+                  <DotIcon src={scu} width={70} height={70} />
                 </TimelineDot>
-                <TimelineConnector />
+                <Connector />
               </TimelineSeparator>
-              <TimelineContent sx={{ py: "12px", px: 2 }}>Santa Clara University</TimelineContent>
+              <Content>
+                <CardBox
+                  company={child.node.frontmatter.company}
+                  position={child.node.frontmatter.job}
+                />{" "}
+              </Content>
+            </TimelineItem>
+            })} */}
+
+
+            <TimelineItem>
+              <DateContent>{data[0].node.frontmatter.date}</DateContent>
+              <TimelineSeparator>
+                <Connector />
+                <TimelineDot>
+                  <DotIcon
+                    variant="outlined"
+                    src={scu}
+                    width={70}
+                    height={70}
+                  />
+                </TimelineDot>
+                <Connector />
+              </TimelineSeparator>
+              <Content>
+                <CardBox
+                  company={data[0].node.frontmatter.company}
+                  position={data[0].node.frontmatter.job}
+                  content={data[0].node.html}
+                />
+              </Content>
+            </TimelineItem>
+
+            <TimelineItem>
+              <DateContent>{data[1].node.frontmatter.date}</DateContent>
+              <TimelineSeparator>
+                <Connector />
+                <TimelineDot variant="outlined">
+                  <DotIcon src={trifacta} width={70} height={70} />
+                </TimelineDot>
+                <Connector />
+              </TimelineSeparator>
+              <Content>
+                <CardBox
+                  company={data[1].node.frontmatter.company}
+                  position={data[1].node.frontmatter.job}
+                  content={data[1].node.html}
+
+                />{" "}
+              </Content>
+            </TimelineItem>
+
+            <TimelineItem>
+              <DateContent>{data[2].node.frontmatter.date}</DateContent>
+              <TimelineSeparator>
+                <Connector />
+                <TimelineDot variant="outlined">
+                  <DotIcon src={dasera} width={70} height={70} />
+                </TimelineDot>
+                <Connector />
+              </TimelineSeparator>
+              <Content>
+                <CardBox
+                  company={data[2].node.frontmatter.company}
+                  position={data[2].node.frontmatter.job}
+                  content={data[2].node.html}
+
+                />
+              </Content>
             </TimelineItem>
             <TimelineItem>
-              <TimelineOppositeContent
-                sx={{ m: "auto 0" }}
-                variant="body2"
-                color="text.secondary"
-              >
-                Jun 2016
-              </TimelineOppositeContent>
+              <DateContent>{data[3].node.frontmatter.date}</DateContent>
               <TimelineSeparator>
-                <TimelineConnector />
-                <TimelineDot color="primary"><img src={trifacta} width={60} height={60}/></TimelineDot>
-                <TimelineConnector />
+                <Connector />
+                <TimelineDot variant="outlined">
+                  <DotIcon src={af} width={70} height={70} />
+                </TimelineDot>
+                <Connector />
               </TimelineSeparator>
-              <TimelineContent sx={{ py: "12px", px: 2 }}></TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineConnector />
-                <TimelineDot color="primary" variant="outlined"></TimelineDot>
-                <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
-              </TimelineSeparator>
-              <TimelineContent sx={{ py: "12px", px: 2 }}></TimelineContent>
-            </TimelineItem>
-            <TimelineItem>
-              <TimelineSeparator>
-                <TimelineConnector sx={{ bgcolor: "secondary.main" }} />
-                <TimelineDot color="secondary"></TimelineDot>
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent sx={{ py: "12px", px: 2 }}></TimelineContent>
+              <Content>
+                <CardBox
+                  company={data[3].node.frontmatter.company}
+                  position={data[3].node.frontmatter.job}
+                  content={data[3].node.html}
+
+                />
+              </Content>
             </TimelineItem>
           </Timeline>
         </Container>

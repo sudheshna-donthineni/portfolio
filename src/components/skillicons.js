@@ -1,4 +1,5 @@
 import React from "react"
+//import media from "../styles/media"
 export const HTMLIcon = () => (
   <svg
     width="90px"
@@ -33,7 +34,6 @@ export const PythonIcon = () => (
     height="90px"
     viewBox="0 -0.5 256 256"
     version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
     xmlns="http://www.w3.org/1999/xlink"
     preserveAspectRatio="xMidYMid"
   >
@@ -45,8 +45,8 @@ export const PythonIcon = () => (
         y2="78.2008538%"
         id="linearGradient-1"
       >
-        <stop stop-color="#BFA5E2" offset="0%"></stop>
-        <stop stop-color="#BFA5E2" offset="100%"></stop>
+        <stop stopColor="#BFA5E2" offset="0%"></stop>
+        <stop stopColor="#BFA5E2" offset="100%"></stop>
       </linearGradient>
       <linearGradient
         x1="19.127525%"
@@ -55,8 +55,8 @@ export const PythonIcon = () => (
         y2="88.4290372%"
         id="linearGradient-2"
       >
-        <stop stop-color="#BFA5E2" offset="0%"></stop>
-        <stop stop-color="#BFA5E2" offset="100%"></stop>
+        <stop stopColor="#BFA5E2" offset="0%"></stop>
+        <stop stopColor="#BFA5E2" offset="100%"></stop>
       </linearGradient>
     </defs>
     <g>
@@ -102,8 +102,8 @@ export const CSSIcon = () => (
       y2="1419.102"
       gradientTransform="matrix(1 0 0 -1 1045.93 1658.759)"
     >
-      <stop offset=".387" stop-color="#d1d3d4" stop-opacity="0" />
-      <stop offset="1" stop-color="#d1d3d4" />
+      <stop offset=".387" stopColor="#d1d3d4" stopOpacity="0" />
+      <stop offset="1" stopColor="#d1d3d4" />
     </linearGradient>
     <path
       d="M171.677 280.258l3.233 40.199 94.257-40.301v-40.5l-97.49 40.602z"
@@ -118,8 +118,8 @@ export const CSSIcon = () => (
       y2="1462.591"
       gradientTransform="matrix(1 0 0 -1 1045.93 1658.759)"
     >
-      <stop offset=".387" stop-color="#d1d3d4" stop-opacity="0" />
-      <stop offset="1" stop-color="#d1d3d4" />
+      <stop offset=".387" stopColor="#d1d3d4" stopOpacity="0" />
+      <stop offset="1" stopColor="#d1d3d4" />
     </linearGradient>
     <path
       d="M373.59 196.167l-104.422 43.489v40.5l100.265-42.868 4.157-41.121z"
@@ -134,8 +134,8 @@ export const CSSIcon = () => (
       y2="1302.263"
       gradientTransform="matrix(1 0 0 -1 1045.93 1658.759)"
     >
-      <stop offset="0" stop-color="#e8e7e5" />
-      <stop offset="1" stop-color="#fff" />
+      <stop offset="0" stopColor="#e8e7e5" />
+      <stop offset="1" stopColor="#fff" />
     </linearGradient>
     <path
       d="M171.827 280.258l3.234 40.199 144.625.461-3.235 53.598-47.59 13.398-45.748-11.551-2.772-33.268h-42.508l5.545 64.225 85.945 25.412 85.479-24.951 11.09-127.523H171.827z"
@@ -154,8 +154,8 @@ export const CSSIcon = () => (
       y2="1442.031"
       gradientTransform="matrix(1 0 0 -1 1045.93 1658.759)"
     >
-      <stop offset="0" stop-color="#e8e7e5" />
-      <stop offset="1" stop-color="#fff" />
+      <stop offset="0" stopColor="#e8e7e5" />
+      <stop offset="1" stopColor="#fff" />
     </linearGradient>
     <path
       d="M162.898 196.167H373.59l-4.157 41.122H167.98l-5.082-41.122z"
@@ -177,8 +177,8 @@ export const JSIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
   >
     <path
-      fill-rule="evenodd"
-      clip-rule="evenodd"
+      fillRule="evenodd"
+      clipRule="evenodd"
       d="M15 0H0V15H15V0ZM8 8C8 6.89543 8.89543 6 10 6H11.1667C12.1792 6 13 6.82081 13 7.83333V8H12V7.83333C12 7.3731 11.6269 7 11.1667 7H10C9.44772 7 9 7.44772 9 8C9 8.55228 9.44772 9 10 9H11C12.1046 9 13 9.89543 13 11C13 12.1046 12.1046 13 11 13H10C8.89543 13 8 12.1046 8 11H9C9 11.5523 9.44772 12 10 12H11C11.5523 12 12 11.5523 12 11C12 10.4477 11.5523 10 11 10H10C8.89543 10 8 9.10457 8 8ZM6 6V11C6 11.5523 5.55228 12 5 12C4.44772 12 4 11.5523 4 11H3C3 12.1046 3.89543 13 5 13C6.10457 13 7 12.1046 7 11V6H6Z"
       fill="#BFA5E2"
     />
@@ -236,16 +236,9 @@ export const GitIcon = () => (
     height="100px"
     viewBox="0 0 24 24"
     version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
     xmlns="http://www.w3.org/1999/xlink"
   >
-    <g
-      id="brand"
-      stroke="none"
-      stroke-width="1"
-      fill="none"
-      fill-rule="evenodd"
-    >
+    <g id="brand" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
       <g id="git" fill="#BFA5E2">
         <path
           d="M21.6225861,11.1091377 L12.8904814,2.37725069 C12.3876981,1.87424977 11.5721445,1.87424977 11.0689259,2.37725069 L9.255859,4.19075292 L11.5558204,6.49093194 C12.0903813,6.31027822 12.703298,6.4315121 13.1294667,6.85746312 C13.5578119,7.28624365 13.6779575,7.90438412 13.492733,8.44090392 L15.7097678,10.657721 C16.2462876,10.4727142 16.8648634,10.5922069 17.2932086,11.0214227 C17.8917601,11.6197566 17.8917601,12.5898453 17.2932086,13.1886145 C16.6942218,13.7876013 15.7243507,13.7876013 15.1251462,13.1886145 C14.6750355,12.7380684 14.5635961,12.0763969 14.7919163,11.5218118 L12.7241929,9.45430603 L12.7241929,14.8950304 C12.8700218,14.9672919 13.0077975,15.0634954 13.1294667,15.1847293 C13.7280182,15.7832808 13.7280182,16.7531519 13.1294667,17.352574 C12.5309152,17.9509079 11.5603911,17.9509079 10.9620573,17.352574 C10.3635058,16.7531519 10.3635058,15.7832808 10.9620573,15.1847293 C11.1100627,15.0369415 11.2813573,14.9250668 11.4641876,14.8501934 L11.4641876,9.35919076 C11.2813573,9.28453506 11.110498,9.17353096 10.9620573,9.02487254 C10.5086817,8.57171463 10.3996365,7.90612536 10.6323098,7.34936363 L8.36477905,5.08161522 L2.37708745,11.0686539 C1.87430418,11.5720901 1.87430418,12.3876437 2.37708745,12.8906446 L11.1096274,21.6225317 C11.6124107,22.1253149 12.4277467,22.1253149 12.9311829,21.6225317 L21.6225861,12.9311285 C22.1258046,12.4281276 22.1258046,11.6121386 21.6225861,11.1091377"
