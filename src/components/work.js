@@ -71,7 +71,7 @@ class Work extends Component {
   }
   render() {
     const {data} = this.props;
-    console.log(data)
+
     return (
       <>
         <Container>

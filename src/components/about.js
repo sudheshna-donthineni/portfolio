@@ -98,31 +98,17 @@ const renderAst = new RehypeReact({
   },
 }).Compiler;
 
-
+const hasWindow = (typeof window !== 'undefined') ? true : false;
 class About extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
   }
   state = {
-    windowHeight: undefined,
-    windowWidth: undefined
-  }
-
-  handleResize = () => {
-    console.log("resixed")
-    this.setState({
     windowHeight: hasWindow ? window.innerHeight : null,
     windowWidth: hasWindow ? window.innerWidth : null
-  })};
-
-  componentDidMount() {
-    this.handleResize();
-    window.addEventListener('resize', this.handleResize)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleResize)
-  }
+
   defaultOptions = {
     loop: true,
     autoplay: true,
