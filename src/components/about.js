@@ -1,5 +1,4 @@
-import React, { Component, createElement } from "react"
-import PropTypes from "prop-types"
+import React, { useEffect, useRef } from "react"
 import ScrollReveal from "scrollreveal"
 import { srConfig } from "../config"
 import styled from "styled-components"
@@ -11,7 +10,7 @@ import Tooltip from '@mui/material/Tooltip';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 import RehypeReact from "rehype-react"
 import media from "../styles/media"
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const AboutContainer = styled.section`
   margin-top: 120vh;
@@ -98,40 +97,29 @@ const renderAst = new RehypeReact({
   },
 }).Compiler;
 
-const hasWindow = (typeof window !== 'undefined') ? true : false;
-class About extends Component {
-  static propTypes = {
-    data: PropTypes.array.isRequired,
-  }
-  state = {
-    windowHeight: hasWindow ? window.innerHeight : null,
-    windowWidth: hasWindow ? window.innerWidth : null
-  }
+
+const About = ({...props}) => {
 
 
-  defaultOptions = {
+  const defaultOptions = {
     loop: true,
     autoplay: true,
     animationData: animationData,
   }
-  componentDidMount() {
-    ScrollReveal().reveal(this.about, srConfig())
-  }
+    const about = useRef()
+    useEffect(() => {
+      ScrollReveal().reveal(about, srConfig())
+    },[])
 
 
 
-
-  render() {
-    const { data } = this.props
-    const {  htmlAst } = data[0].node
-    const smallDevice = (this.state.windowWidth < 750)
-
+    const {  htmlAst } = props.data[0].node
+    const imageWidth = useMediaQuery('(max-width:760px)') ? [400, 400] : [700, 500]
+    console.log(imageWidth)
     return (
 
-      <AboutContainer id="about" ref={el => (this.about = el)}>
+      <AboutContainer ref={about}>
         <FlexContainer>
-
-
           <ContentContainer id="content">
           <Name title="grandfather's name for me" placement="top"><QuestionMarkIcon/></Name>
           <div>{renderAst(htmlAst)}</div>
@@ -139,17 +127,18 @@ class About extends Component {
           <AvatarContainer id="avatar">
             <Lottie
               style={style}
-              options={this.defaultOptions}
-              height={this.state.windowWidth/ (!smallDevice ? 2 : 3)}
-              width={this.state.windowWidth / (!smallDevice ? 2 : 3)}
+              options={defaultOptions}
+              height={imageWidth[0]}
+              width={imageWidth[0]}
             />
-            <Avatar src={Image} alt="Avatar" height={this.state.windowWidth / 3} width={this.state.windowWidth/ 3} />
+            <Avatar src={Image} alt="Avatar" height={imageWidth[1]} width={imageWidth[1]} />
           </AvatarContainer>
         </FlexContainer>
       </AboutContainer>
 
+
     )
   }
-}
+
 
 export default About
