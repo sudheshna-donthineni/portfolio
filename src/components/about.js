@@ -111,8 +111,8 @@ class About extends Component {
   handleResize = () => {
     console.log("resixed")
     this.setState({
-    windowHeight: window.innerHeight,
-    windowWidth: window.innerWidth
+    windowHeight: hasWindow ? window.innerHeight : null,
+    windowWidth: hasWindow ? window.innerWidth : null
   })};
 
   componentDidMount() {
@@ -154,10 +154,10 @@ class About extends Component {
             <Lottie
               style={style}
               options={this.defaultOptions}
-              height={window.innerWidth / (!smallDevice ? 2 : 3)}
-              width={window.innerWidth / (!smallDevice ? 2 : 3)}
+              height={this.state.windowWidth/ (!smallDevice ? 2 : 3)}
+              width={this.state.windowWidth / (!smallDevice ? 2 : 3)}
             />
-            <Avatar src={Image} alt="Avatar" height={window.innerWidth / 3} width={window.innerWidth / 3} />
+            <Avatar src={Image} alt="Avatar" height={this.state.windowWidth / 3} width={this.state.windowWidth/ 3} />
           </AvatarContainer>
         </FlexContainer>
       </AboutContainer>
