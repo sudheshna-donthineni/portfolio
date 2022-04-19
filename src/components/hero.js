@@ -51,6 +51,7 @@ const NameText = styled.div`
 const SecondText = styled.div`
   width: auto;
   display: inline-block;
+
 `
 
 const DescriptiveAnimation = keyframes`
@@ -83,19 +84,14 @@ const DescriptiveAnimation = keyframes`
 const DescriptiveText = styled.div`
   overflow: hidden;
   width: 87vw;
-  height: 16vh;
-  font-size: 8vw;
+ height: 15vh;
+  font-size: 6.8vw;
   position: relative;
   left: -4%;
-  ${media.desktop`font-size: 70px;`};
-  ${media.tablet`height: 10vh;
-    font-size: 8vw;`};
-  ${media.phablet`font-size: 50px;`};
-  ${media.phone`
-        height: 10vh;
-        font-size: 8vw;`};
-  ${media.tiny`height: 10vh;
-    font-size: 8vw;`};
+
+  ${media.ipad` height: 10vh; font-size: 3.5rem`};
+  ${media.thone`height: 10vh; font-size: 3.3rem`};
+  ${media.phablet`height: 10vh; font-size: 2.7rem`};
 `
 const DescriptiveList = styled.ul`
   animation-name: ${DescriptiveAnimation};
@@ -104,6 +100,7 @@ const DescriptiveList = styled.ul`
   margin-top: 0;
   list-style: none;
   padding: 0;
+
 `
 
 const Mark = styled.mark`

@@ -11,7 +11,11 @@ import Work from "../components/work"
 import Projects from "../components/projects"
 import Story from "../components/story"
 
+
+
+
 const IndexPage = ({ data }) => (
+
   <Layout>
     <Hero />
     <About data={data.about.edges} />
@@ -22,6 +26,9 @@ const IndexPage = ({ data }) => (
 
     <Contact data={data.contact.edges} />
   </Layout>
+
+
+
 )
 
 IndexPage.propTypes = {

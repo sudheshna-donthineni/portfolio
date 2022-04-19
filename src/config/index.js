@@ -12,7 +12,7 @@ module.exports = {
 
     {
       name: "Instagram",
-      url: "https://www.instagram.com/_sudheshna/",
+      url: "https://www.instagram.com/_krrupa/",
     },
     {
       name: "Twitter",
@@ -20,7 +20,7 @@ module.exports = {
     },
     {
       name: "Youtube",
-      url: "https://twitter.com/sudonthineni",
+      url: "https://www.youtube.com/channel/UCPu-rfYtORSLzvW9OhI089g",
     },
     {
       name: "Email",
@@ -28,7 +28,7 @@ module.exports = {
     },
     {
       name: "Pinterest",
-      url: "https://twitter.com/sudonthineni",
+      url: "https://in.pinterest.com/sdonthineni/",
     },
   ],
   srConfig: (delay = 200) => {

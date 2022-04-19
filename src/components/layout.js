@@ -3,7 +3,7 @@ import PropTypes from "prop-types"
 import Icons from "../components/socialbar"
 import Loader from "./loader"
 import GlobalStyle from "../styles/global"
-import Resume from "./Resume"
+import Rightbar from "./rightbar"
 import styled from "styled-components"
 const MainContainer = styled.div`
   display: flex;
@@ -30,10 +30,11 @@ class Layout extends Component {
         {isLoading ? (
           <Loader finishLoading={this.finishLoading} />
         ) : (
+
           <MainContainer>
             <Icons />
             {children}
-            <Resume />
+            <Rightbar />
           </MainContainer>
         )}
       </div>
