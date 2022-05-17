@@ -8,7 +8,7 @@ const GlobalStyle = createGlobalStyle`
 html {
     background-color: ${theme.colors.grey};
     font-family: Shalma
-
+    overflow-x: hidden;
   }
 
 

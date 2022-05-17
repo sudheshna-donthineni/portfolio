@@ -5,8 +5,8 @@ export const GithubIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
     version="1.1"
-    width="24"
-    height="24"
+    width="30"
+    height="30"
     viewBox="0 0 24 24"
   >
     <path
@@ -21,8 +21,8 @@ export const EmailIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
     version="1.1"
-    width="24"
-    height="24"
+    width="30"
+    height="30"
     viewBox="0 0 24 24"
   >
     <path
@@ -37,8 +37,8 @@ export const InstaIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
     version="1.1"
-    width="24"
-    height="24"
+    width="30"
+    height="30"
     viewBox="0 0 24 24"
   >
     <path
@@ -53,8 +53,8 @@ export const LinkedInIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
     version="1.1"
-    width="24"
-    height="24"
+    width="30"
+    height="30"
     viewBox="0 0 24 24"
   >
     <path
@@ -69,8 +69,8 @@ export const TwitterIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
     version="1.1"
-    width="24"
-    height="24"
+    width="30"
+    height="30"
     viewBox="0 0 24 24"
   >
     <path
@@ -85,8 +85,8 @@ export const PinterestIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
     version="1.1"
-    width="24"
-    height="24"
+    width="30"
+    height="30"
     viewBox="0 0 24 24"
   >
     <path
@@ -100,8 +100,8 @@ export const YoutubeIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
     version="1.1"
-    width="24"
-    height="24"
+    width="30"
+    height="30"
     viewBox="0 0 24 24"
   >
     <path
@@ -111,15 +111,15 @@ export const YoutubeIcon = () => (
   </svg>
 )
 
-export const ContactIcon = ({iconColor}) => (
+export const ContactIcon = ({iconColor, width, height}) => (
 
   <svg
     version="1.1"
     id="Capa_1"
     xmlns="http://www.w3.org/2000/svg"
     xlink="http://www.w3.org/1999/xlink"
-    width="90"
-    height="105"
+    width={width}
+    height={height}
     viewBox="0 0 75.294 75.294"
     space="preserve"
   >

@@ -1,5 +1,4 @@
 import * as React from "react"
-// import { StaticImage } from "gatsby-plugin-image"
 import { graphql } from "gatsby"
 import PropTypes from "prop-types"
 import Layout from "../components/layout"
@@ -11,24 +10,16 @@ import Work from "../components/work"
 import Projects from "../components/projects"
 import Story from "../components/story"
 
-
-
-
 const IndexPage = ({ data }) => (
-
   <Layout>
     <Hero />
     <About data={data.about.edges} />
     <Story data={data.story.edges} />
-    <Work data={data.work.edges}/>
+    <Work data={data.work.edges} />
     <Projects data={data.projects.edges} />
     <Skills data={data.skills.edges} />
-
     <Contact data={data.contact.edges} />
   </Layout>
-
-
-
 )
 
 IndexPage.propTypes = {
@@ -45,7 +36,6 @@ export const query = graphql`
     ) {
       edges {
         node {
-
           htmlAst
         }
       }
@@ -55,7 +45,6 @@ export const query = graphql`
     ) {
       edges {
         node {
-
           html
         }
       }

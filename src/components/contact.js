@@ -3,76 +3,66 @@ import styled from "styled-components"
 import theme from "../styles/theme"
 import ScrollReveal from "scrollreveal"
 import { srConfig, email } from "../config"
-import Lottie from "react-lottie"
-import animationData from "../styles/contact.json"
 import media from "../styles/media"
-import { ContactIcon } from "./icons"
+import mixins from "../styles/mixins"
 
 const ContactWrapper = styled.div`
   display: inline-block;
   width: auto;
   margin-top: 50vh;
   margin-bottom: 10vh;
-  //height: 80vh;
   text-align: center;
-  font-family: ${theme.fonts.Serif};
-  display: flex;
-  flex-direction: row;
   //border: 5px solid black;
 `
 
-const ContactContainer = styled.div`
-  flex: 1;
-  margin-left: 20vh;
-  ${media.thone`margin-left:10vh`};
-
-`
-
 const Title = styled.p`
-  color: ${theme.colors.brown}
-  font-size: 5rem;
-  font-family: Bradley Hand, cursive;
-  ${media.thone`font-size: 3rem`}
-  display: inline-block;
-  width:auto;
-  background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=bfa5e24d);
-`
-
-const FlexChild = styled.div`
-  width: 28vw;
-  height: 28vw;
-  margin-right: 10vh;
-  ${media.thone`display: none;`};
-  margin-top:auto;
-  margin-bottom: auto;
+  ${mixins.title};
+  margin: 0;
 `
 
 const Text = styled.p`
   color: ${theme.colors.brown};
-  font-size: 2.5rem;
-  ${media.thone`font-size: 2rem`}
-  margin-top: -10%;
-  margin-bottom: -2%;
+  font-size: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  ${media.tablet`font-size: 1.5rem`}
 `
 
-const EmailLink = styled.button`
-  background: transparent;
-  border: none;
-  cursor: pointer;
+const EmailLink = styled.a`
+  background: #bfa5e2;
+  padding: 20px;
 
+  text-decoration: none;
+  color: ${theme.colors.brown};
+  text-align: center;
+  width: auto;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: ${theme.fonts.SFMono};
+  font-size: 1rem;
+  box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.1);
   &:hover {
-    transform: scale(1.2);
+    background-color: ${theme.colors.pink};
+    box-shadow: 0px 7px 9px ${theme.colors.brown};
+    color: ${theme.colors.grey};
+    transform: translateY(-10px);
   }
 `
 class Contact extends Component {
-  defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
+  constructor(props) {
+    super(props)
+    this.revealRefs = []
+    this.restRefs = []
   }
 
   componentDidMount() {
     ScrollReveal().reveal(this.contact, srConfig())
+    this.revealRefs.forEach((ref, i) =>
+      ScrollReveal().reveal(ref, srConfig(i * 15))
+    )
   }
 
   render() {
@@ -82,21 +72,19 @@ class Contact extends Component {
 
     return (
       <ContactWrapper id="contact" ref={el => (this.contact = el)}>
-        <ContactContainer>
-          <Title>{title}</Title>
-          <Text dangerouslySetInnerHTML={{ __html: html }} />
+        <Title>{title}</Title>
+        <Text
+          ref={el => (this.revealRefs[0] = el)}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
 
-          <EmailLink
-            href={`mailto:${email}`}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-          >
-            <ContactIcon />
-          </EmailLink>
-        </ContactContainer>
-        <FlexChild>
-          <Lottie options={this.defaultOptions} />
-        </FlexChild>
+        <EmailLink
+          href={`mailto:${email}`}
+          target="_blank"
+          rel="nofollow noopener noreferrer"
+        >
+          hit me up!
+        </EmailLink>
       </ContactWrapper>
     )
   }

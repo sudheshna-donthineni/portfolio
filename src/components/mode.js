@@ -5,8 +5,14 @@ import Brightness5Icon from '@mui/icons-material/Brightness5';
 import theme from "../styles/theme"
 import media from "../styles/media"
 import ModeNightIcon from '@mui/icons-material/ModeNight';
+import { MediaBluetoothOff } from "@mui/icons-material";
 
-
+const MainAnimation = keyframes`
+  0% { opacity: 0;  }
+  25% { opacity: 0.5;  }
+  75% { opacity: 0.5;  }
+  100% { opacity: 1;  }
+`
 
 const Button = styled.button`
 ${media.tablet`
@@ -20,7 +26,13 @@ color: ${(props) => props.dark ? `${theme.colors.blue}` : `${theme.colors.orange
 &:hover{
     cursor: pointer;
     transform: scale(1.2);
-  }`
+  }
+
+  &:active {
+    animation-name: ${MainAnimation};
+  animation-duration: 10s;
+  animation-iteration-count: infinite;
+  }  `
 
 const BrightIcon = styled(Brightness5Icon)`
 &.MuiSvgIcon-root{

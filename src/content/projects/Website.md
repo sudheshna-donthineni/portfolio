@@ -2,12 +2,12 @@
 id: 3
 title: "English Union School"
 skills:
-  - React
-  - Styled Components
+  - Vue
+  - Styled-Components
   - Gatsby
   - GraphQL
 image: ""
-github: ""
+github: "https://github.com/sudheshna-donthineni"
 ---
 
-Built a website for a school using React, GraphQL for content-fetching APIs and deployed on Netlify.
+- Built an informational website for a school using Vue, GraphQL for content-fetching APIs and deployed on Netlify.

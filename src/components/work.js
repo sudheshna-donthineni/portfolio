@@ -1,58 +1,121 @@
 import React, { Component } from "react"
 import styled from "styled-components"
-import Timeline from "@mui/lab/Timeline"
-import TimelineItem from "@mui/lab/TimelineItem"
-import TimelineSeparator from "@mui/lab/TimelineSeparator"
-import TimelineConnector from "@mui/lab/TimelineConnector"
-import TimelineContent from "@mui/lab/TimelineContent"
-import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent"
-import TimelineDot from "@mui/lab/TimelineDot"
-import scu from "../images/scu.png"
+import Paper from "@mui/material/Paper"
 import trifacta from "../images/trifacta.jpeg"
-//import "../styles/s tyles.css"
 import dasera from "../images/dasera.jpeg"
 import af from "../images/af.png"
-import CardBox from "../components/card"
 import PropTypes from "prop-types"
 import { srConfig } from "../config"
 import theme from "../styles/theme"
 import ScrollReveal from "scrollreveal"
+import mixins from "../styles/mixins"
+import media from "../styles/media"
 
-const Container = styled.div`
-  width: 80%;
+
+const MainContainer = styled.div`
+
+  text-align: center;
+  margin-top: 100vh;
+`
+
+const Heading = styled.p`
+  ${mixins.title}
+`
+
+const TimelineContainer = styled.div`
+  width: 85%;
   margin-left: auto;
   margin-right: auto;
-  margin-top:50vh;
-  }
-`
-const DotIcon = styled.img`
-  border-radius: 50%;
-`
-
-const DateContent = styled(TimelineOppositeContent)`
-  &.MuiTimelineOppositeContent-root {
-    letter-spacing: 2px;
-    font-size: 1.1rem;
-    font-family: "SF Mono";
-    margin-top: auto;
-    margin-bottom: auto;
   }
 `
 
-const Content = styled(TimelineContent)`
-  &.MuiTimelineContent-root {
-    display: flex;
-    align-items: center;
+const Item = styled.div`
+display: flex;
+  margin-bottom: 8vh;
+justify-content: center;
+flex-direction: row;
+  align-content: center;
+  &:nth-child(2){
+    margin-right:15%;
+  }
+  &:nth-child(1){
+    margin-left:15%;
+  }
+  &:nth-child(3){
+    margin-left:15%;
+  }
+  ${media.tablet`&:nth-child(2){
+    margin-right:0%;
+  }
+  &:nth-child(1){
+    margin-left:0%;
+  }
+  &:nth-child(3){
+    margin-left:0%;
+  }`}
+`
+const BoxHeading = styled.p`
+text-align: center;
+margin:0;
+margin-top:15px;
+font-family: ${theme.fonts.SFMono};
+letter-spacing: 4px;
 
-    justify-content: center;
+font-size: 1.7rem;
+text-shadow: -1px -1px 0 ${theme.colors.brown},
+    1px -1px 0 ${theme.colors.brown}, -1px 1px 0 ${theme.colors.brown},
+    1px 1px 0 ${theme.colors.brown};
+color: ${theme.colors.pink};
+
+`
+
+const Image = styled.img`
+// border:1px solid ${theme.colors.purple}
+
+
+border-radius: 50%;
+
+`
+
+const Box = styled(Paper)`
+  &.MuiPaper-root {
+
+background: #f2edf9;
+    text-align: left;
+    border: 1px solid ${theme.colors.purple};
+    border-radius: 10px;
+    letter-spacing: 1px;
+    width: 60vw;
+    ${media.tablet`width: 100vw;`}
   }
 `
 
-const Connector = styled(TimelineConnector)`
-  &.MuiTimelineConnector-root {
-    height: 13vh;
-    background-color: rgb(9, 12, 16);
-  }
+const BoxContent = styled.p`
+text-align: center;
+  font-family: ${theme.fonts.SFMono};
+  font-size: 1rem;
+  margin-top: -2%;
+  letter-spacing: 3px;
+  color: ${theme.colors.pink}
+margin-bottom: 0;
+
+`
+
+const BoxDescription = styled.p`
+padding-left: 25px;
+padding-right: 25px;
+padding-bottom: 10px;
+line-height: 30px;
+font-family: ${theme.fonts.Serif}
+font-size: 1.1rem
+`
+
+const HeadingContainer = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+gap: 5%;
 `
 class Work extends Component {
   static propTypes = {
@@ -70,113 +133,35 @@ class Work extends Component {
     )
   }
   render() {
-    const {data} = this.props;
+    const { data } = this.props
 
     return (
       <>
-        <Container>
-          <Timeline position="alternate">
-            {/* {data.map((child, index) => {
-              console.log(child.node);
-              <TimelineItem key={index}>
-              <DateContent>{child.node.frontmatter.date}</DateContent>
-              <TimelineSeparator>
-                <Connector />
-                <TimelineDot variant="outlined">
-                  <DotIcon src={scu} width={70} height={70} />
-                </TimelineDot>
-                <Connector />
-              </TimelineSeparator>
-              <Content>
-                <CardBox
-                  company={child.node.frontmatter.company}
-                  position={child.node.frontmatter.job}
-                />{" "}
-              </Content>
-            </TimelineItem>
-            })} */}
+        <MainContainer>
 
+          <Heading> my work</Heading>
+          <TimelineContainer>
 
-            <TimelineItem>
-              <DateContent>{data[0].node.frontmatter.date}</DateContent>
-              <TimelineSeparator>
-                <Connector />
-                <TimelineDot>
-                  <DotIcon
-                    variant="outlined"
-                    src={scu}
-                    width={70}
-                    height={70}
-                  />
-                </TimelineDot>
-                <Connector />
-              </TimelineSeparator>
-              <Content>
-                <CardBox
-                  company={data[0].node.frontmatter.company}
-                  position={data[0].node.frontmatter.job}
-                  content={data[0].node.html}
-                />
-              </Content>
-            </TimelineItem>
+              {data.map((child, index) => (
+                <Item key={index} >
 
-            <TimelineItem>
-              <DateContent>{data[1].node.frontmatter.date}</DateContent>
-              <TimelineSeparator>
-                <Connector />
-                <TimelineDot variant="outlined">
-                  <DotIcon src={trifacta} width={70} height={70} />
-                </TimelineDot>
-                <Connector />
-              </TimelineSeparator>
-              <Content>
-                <CardBox
-                  company={data[1].node.frontmatter.company}
-                  position={data[1].node.frontmatter.job}
-                  content={data[1].node.html}
+                  <Box>
+                  <HeadingContainer><BoxHeading>{child.node.frontmatter.company}</BoxHeading>
+                  {(index == 0) &&
+                  <Image i={index} src={trifacta} width={50} />}
+                  {(index == 1) &&
+                  <Image i={index} id="order" src={dasera} width={50} />}
+                  {(index == 2) &&
+                  <Image i={index} src={af} width={50} />}
+                  </HeadingContainer> <br />
+          <BoxContent>{child.node.frontmatter.job}</BoxContent>
+          <BoxDescription dangerouslySetInnerHTML={{ __html: child.node.html}}></BoxDescription>
+          </Box>
+                </Item>
+              ))}
 
-                />{" "}
-              </Content>
-            </TimelineItem>
-
-            <TimelineItem>
-              <DateContent>{data[2].node.frontmatter.date}</DateContent>
-              <TimelineSeparator>
-                <Connector />
-                <TimelineDot variant="outlined">
-                  <DotIcon src={dasera} width={70} height={70} />
-                </TimelineDot>
-                <Connector />
-              </TimelineSeparator>
-              <Content>
-                <CardBox
-                  company={data[2].node.frontmatter.company}
-                  position={data[2].node.frontmatter.job}
-                  content={data[2].node.html}
-
-                />
-              </Content>
-            </TimelineItem>
-            <TimelineItem>
-              <DateContent>{data[3].node.frontmatter.date}</DateContent>
-              <TimelineSeparator>
-                <Connector />
-                <TimelineDot variant="outlined">
-                  <DotIcon src={af} width={70} height={70} />
-                </TimelineDot>
-                <Connector />
-              </TimelineSeparator>
-              <Content>
-                <CardBox
-                  company={data[3].node.frontmatter.company}
-                  position={data[3].node.frontmatter.job}
-                  content={data[3].node.html}
-
-                />
-              </Content>
-            </TimelineItem>
-          </Timeline>
-        </Container>
+          </TimelineContainer>
+        </MainContainer>
       </>
     )
   }

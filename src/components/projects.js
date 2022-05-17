@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React,  { useEffect, useRef   } from "react"
 import styled from "styled-components"
 import PropTypes from "prop-types"
 import { srConfig } from "../config"
@@ -6,33 +6,63 @@ import theme from "../styles/theme"
 import ScrollReveal from "scrollreveal"
 import Paper from "@mui/material/Paper"
 import Masonry from "@mui/lab/Masonry"
-import { GithubIcon } from "./icons"
+import { GithubIcon } from "../components/icons"
 import mixins from "../styles/mixins"
-
+import { graphql } from "gatsby"
+import media from "../styles/media"
+import Img from "gatsby-image"
+import useMediaQuery from "@mui/material/useMediaQuery"
 const ProjectsContainer = styled.div`
   margin-top: 70vh;
   text-align: center;
   font-family: ${theme.fonts.Serif};
-  width: 90vw;
+  width: 80vw;
   margin-left: auto;
+  margin-right: auto;
+ // border: 5px solid black;
 `
+
 const Title = styled.p`
   ${mixins.title}
-  font-family: Bradley Hand, cursive;
+`
+
+const Tiles = styled(Masonry)`
+&.MuiMasonry-root{
+  margin-left: auto;
+  margin-right: auto;
+}
 `
 const Card = styled(Paper)`
-  font-size: 1.4rem;
+&.MuiPaper-root {
+  font-size: 1.1rem;
   text-align: left;
   border-radius: 10px;
-  padding: 30px;
-  overflow: hidden;
+  letter-spacing: 1px;
+  background: #f2edf9;
   border: 1px solid ${theme.colors.purple};
+  ${media.tablet`
+  font-size: 1rem;
+  line-height: 30px;
+ `};
+}
 `
+const Topbar = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
+`
+
 const Heading = styled.p`
-  font-size: 1.8rem;
+  font-size: 1.7rem;
   text-align: center;
-  font-weight: bold;
   margin-bottom: 0;
+  text-shadow: -1px -1px 0 ${theme.colors.brown},
+    1px -1px 0 ${theme.colors.brown}, -1px 1px 0 ${theme.colors.brown},
+    1px 1px 0 ${theme.colors.brown};
+  color: ${theme.colors.pink};
+
 `
 
 const Button = styled.button`
@@ -42,69 +72,65 @@ const Button = styled.button`
   width: 3.5vw;
   transition-timing-function: ease-in-out;
   transition-delay: 150ms;
-  margin-top: 2vh;
-  margin-bottom: 2vh;
+  margin-top:auto;
+  margin-bottom:auto;
   &:hover {
     transform: scale(1.5);
   }
   cursor: pointer;
+  ${media.tablet`
+  display: none;
+`};
 `
 
-const Topbar = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+const Text = styled.p`
+margin-left: 7%;
+margin-right: 10%;
+${media.tablet`
+margin-left: 2%;
+margin-right: 2%;
+`};
 `
 
 const Overlay = styled.div`
-  position: absolute;
-  width: 100%;
-  left: 0;
-  bottom: 30px;
+
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  gap: 30px;
-  z-index: 1;
-  border-radius: 7px;
+  gap: 10%;
   color: ${theme.colors.pink};
-  transform: translateY(100%);
-  transition: 0.2s ease-in-out;
   list-style: none;
-  align-items: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-family: ${theme.fonts.SFMono};
   justify-content: center;
+  row-gap:10px;
 `
-class Projects extends Component {
-  static propTypes = {
-    data: PropTypes.array.isRequired,
-  }
-  constructor(props) {
-    super(props)
-    this.revealRefs = []
-    this.restRefs = []
-  }
-  componentDidMount() {
-    ScrollReveal().reveal(this.projects, srConfig())
-    this.revealRefs.forEach((ref, i) =>
-      ScrollReveal().reveal(ref, srConfig(i * 10))
-    )
-  }
 
-  //heights = [500, 250, 250, 250]
-  render() {
-    const { data } = this.props
 
+const Projects = ({...props}) => {
+
+
+  const projects = useRef()
+  useEffect(() => {
+    ScrollReveal().reveal(projects, srConfig())
+  }, [])
+
+
+    const { data } = props
+    const breakpoints = {
+      isSm: useMediaQuery("(max-width: 760px)")
+    }
+    const columns = breakpoints.isSm
+      ? 1
+      : 2
+    console.log(columns)
     return (
-      <ProjectsContainer>
+      <ProjectsContainer id="projects" ref={projects}>
         <Title>some things I've built</Title>
-        <Masonry columns={2} spacing={7}>
+        <Tiles columns={columns} spacing={5}>
           {data.map((child, index) => (
             <Card
-              ref={el => (this.revealRefs[index] = el)}
               key={index}
-
             >
               <Topbar>
                 <Heading>{child.node.frontmatter.title}</Heading>
@@ -112,7 +138,9 @@ class Projects extends Component {
                   <GithubIcon />
                 </Button>
               </Topbar>
-              <p dangerouslySetInnerHTML={{ __html: child.node.html }}></p>
+
+              {/* <Image src={child.node.frontmatter.image}/> */}
+              <Text dangerouslySetInnerHTML={{ __html: child.node.html }}></Text>
               <Overlay>
                 {child.node.frontmatter.skills.map((skill, i) => (
                   <li key={i}>{skill}</li>
@@ -120,10 +148,31 @@ class Projects extends Component {
               </Overlay>
             </Card>
           ))}
-        </Masonry>
+        </Tiles>
       </ProjectsContainer>
     )
   }
-}
+
 
 export default Projects
+
+export const query = graphql`
+  query PageQuery {
+projects: allMarkdownRemark(
+  filter: { fileAbsolutePath: { regex: "/projects/" } }
+  sort: { fields: [frontmatter___id], order: ASC }
+) {
+  edges {
+    node {
+      frontmatter {
+        title
+        skills
+        image
+        github
+      }
+      html
+    }
+  }
+}
+}
+`

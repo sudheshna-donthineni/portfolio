@@ -23,10 +23,6 @@ module.exports = {
       url: "https://www.youtube.com/channel/UCPu-rfYtORSLzvW9OhI089g",
     },
     {
-      name: "Email",
-      url: "https://twitter.com/sudonthineni",
-    },
-    {
       name: "Pinterest",
       url: "https://in.pinterest.com/sdonthineni/",
     },

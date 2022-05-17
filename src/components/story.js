@@ -15,7 +15,7 @@ const ContentContainer = styled.div`
   margin-left: 13vw
  width: 80vw;
   font-family: ${theme.fonts.Serif};
-  font-size: 1.8rem;
+  font-size: 1.4rem;
   text-align: center;
   line-height: 1.5;
   ${media.tablet`font-size: 1.4rem;`};

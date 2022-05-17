@@ -5,6 +5,7 @@ import ScrollReveal from "scrollreveal"
 import { srConfig } from "../config"
 import theme from "../styles/theme"
 import media from "../styles/media"
+import mixins from "../styles/mixins"
 import {
   HTMLIcon,
   PythonIcon,
@@ -15,81 +16,80 @@ import {
   GitIcon,
   FirebaseIcon,
   AWSIcon,
+  DockerIcon,
+  KubernetesIcon,
+  GCPIcon,
+  PostgreSQLIcon,
+  MySQLIcon,
+  NativeIcon
 } from "./skillicons"
-import Tooltip, {  tooltipClasses }  from '@mui/material/Tooltip';
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip"
+import Legend from "./legend"
 
 const MainContainer = styled.div`
   margin-top: 50vh;
-  align-items: center;
   text-align: center;
   font-family: ${theme.fonts.Serif};
   width: 80vw;
   text-align: center;
   margin-left: auto;
-  margin-right: 5vw;
-  display: flex;
-  flex-direction: row;
+  margin-right: auto;
   //border: 5px solid black;
-
-  ${media.thone`display: block`};
 `
 
 const Title = styled.p`
-  color: ${theme.colors.brown}
-    font-size:5rem;
-  display: inline-block;
-  font-family: Bradley Hand, cursive;
-  width:auto;
-  background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=bfa5e24d);
-  ${media.thone`display: none`}
-`
-const SmallTitle = styled.p`
-  color: ${theme.colors.brown}
-    font-size:5rem;
-  display: inline-block;
-  font-family: Bradley Hand, cursive;
-  width:auto;
-  background: url(//s2.svgbox.net/pen-brushes.svg?ic=brush-1&color=bfa5e24d);
-  display: none
-  ${media.thone`display: block`}
+  ${mixins.title}
+  margin: 0;
 `
 
 const SkillContainer = styled.div`
-
-  flex: 1;
 `
 
 const Skill = styled.div`
-
   display: inline-block;
   width: auto;
   margin-right: 4%;
   margin-left: 4%;
   margin-bottom: 4%;
+  ${media.tablet`
+  margin-right: 12%;
+  margin-left: 12%;
+  margin-bottom: 6%;`}
   &:hover {
-    transform: scale(1.2);
+    transform: translateY(17px);
   }
-  border-radius: 20%;
+
 `
 const HtmlTooltip = styled(({ className, ...props }) => (
   <Tooltip {...props} classes={{ popper: className }} />
 ))(() => ({
   [`& .${tooltipClasses.tooltip}`]: {
-    backgroundColor: '${theme.colors.brown}',
-    color: '${theme.colors.pink}',
+    backgroundColor: `${theme.colors.brown}`,
+    color: `${theme.colors.grey}`,
     maxWidth: 220,
-    fontSize: '20px',
-    border: '1px solid #dadde9',
+    fontSize: "15px",
+    fontFamily: `${theme.fonts.SFMono}`,
+    marginTop: "-15px",
+   border: "1px solid #dadde9",
   },
-}));
+}))
 
 class Skills extends Component {
   static propTypes = {
     data: PropTypes.array.isRequired,
   }
+  constructor(props) {
+    super(props)
+
+    this.revealRefs = []
+    this.restRefs = []
+  }
 
   componentDidMount() {
     ScrollReveal().reveal(this.skills, srConfig())
+    this.revealRefs.forEach((ref, i) =>
+      ScrollReveal().reveal(ref, srConfig(i * 50))
+    )
   }
 
   render() {
@@ -99,47 +99,47 @@ class Skills extends Component {
 
     return (
       <MainContainer id="skills" ref={el => (this.skills = el)}>
-        <SmallTitle>{title}</SmallTitle>
-        <SkillContainer>
-          {skills.slice(0, Math.ceil(skills.length / 2)).map((skill, i) => (
-            <HtmlTooltip key={i} title={skill}>
-            <Skill key={i}>
-              {skill === "Python" ? (
-                <PythonIcon />
-              ) : skill === "HTML5" ? (
-                <HTMLIcon />
-              ) : skill === "CSS" ? (
-                <CSSIcon />
-              ) : skill === "Javascript" ? (
-                <JSIcon />
-              ) : skill === "React" ? (
-                <ReactIcon />
-              ) : (
-                <PythonIcon />
-              )}
-            </Skill>
-            </HtmlTooltip>
-          ))}
-        </SkillContainer>
-
         <Title>{title}</Title>
-
+        <Legend/>
         <SkillContainer>
-          {skills.slice(-Math.ceil(skills.length / 2) + 1).map((skill, i) => (
+          {skills.map((skill, i) => (
             <HtmlTooltip key={i} title={skill}>
-            <Skill key={i}>
-              {skill === "Vue" ? (
-                <VueIcon />
-              ) : skill === "Git" ? (
-                <GitIcon />
-              ) : skill === "Firebase" ? (
-                <FirebaseIcon />
-              ) : skill === "AWS" ? (
-                <AWSIcon />
-              ) : (
-                <PythonIcon />
-              )}
-            </Skill>
+              <Skill ref={el => (this.revealRefs[i] = el)} key={i}>
+                {skill === "Python" ? (
+                  <PythonIcon />
+                ) : skill === "HTML5" ? (
+                  <HTMLIcon />
+                ) : skill === "CSS" ? (
+                  <CSSIcon />
+                ) : skill === "Javascript" ? (
+                  <JSIcon />
+                ) : skill === "React" ? (
+                  <ReactIcon />
+                ) : skill === "Vue" ? (
+                  <VueIcon />
+                ) : skill === "Git" ? (
+                  <GitIcon />
+                ) : skill === "Firebase" ? (
+                  <FirebaseIcon />
+                ) : skill === "AWS" ? (
+                  <AWSIcon />
+                ) : skill === "Docker" ? (
+                  <DockerIcon />
+                ) :skill === "Kubernetes" ? (
+                  <KubernetesIcon />
+                ) : skill === "GCP" ? (
+                  <GCPIcon />
+                ) :skill === "PostgreSQL" ? (
+                  <PostgreSQLIcon />
+                ) :skill === "MySQL" ? (
+                  <MySQLIcon />
+                ):skill === "React Native" ? (
+                  <NativeIcon />
+                ):
+                (
+                  <PythonIcon />
+                )}
+              </Skill>
             </HtmlTooltip>
           ))}
         </SkillContainer>

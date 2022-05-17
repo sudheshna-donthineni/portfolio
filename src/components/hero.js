@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-// import PropTypes from 'prop-types';
 import styled, { keyframes } from "styled-components"
 import theme from "../styles/theme"
 import media from "../styles/media"
@@ -51,7 +50,6 @@ const NameText = styled.div`
 const SecondText = styled.div`
   width: auto;
   display: inline-block;
-
 `
 
 const DescriptiveAnimation = keyframes`
@@ -84,7 +82,7 @@ const DescriptiveAnimation = keyframes`
 const DescriptiveText = styled.div`
   overflow: hidden;
   width: 87vw;
- height: 15vh;
+  height: 15vh;
   font-size: 6.8vw;
   position: relative;
   left: -4%;
@@ -100,7 +98,6 @@ const DescriptiveList = styled.ul`
   margin-top: 0;
   list-style: none;
   padding: 0;
-
 `
 
 const Mark = styled.mark`
